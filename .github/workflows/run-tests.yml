@@ -6,7 +6,7 @@ on:
   push:
 
 jobs:
-  test:
+  unit-test:
     # Use a fresh Ubuntu Linux machine provided by GitHub
     runs-on: ubuntu-latest
 
