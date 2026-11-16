@@ -1,1 +1,30 @@
-name:  Run Unit Tests
+# Runs the pytest unit tests automatically on GitHub Actions
+name: Run Unit Tests
+
+# When to run: every time code is pushed to the repository
+on:
+  push:
+
+jobs:
+  test:
+    # Use a fresh Ubuntu Linux machine provided by GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download (check out) the code from this repository
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      # 2. Install Python on the machine
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      # 3. Install pytest
+      - name: Install pytest
+        run: pip install pytest
+
+      # 4. Run all tests in the tests folder
+      - name: Run pytest
+        run: python -m pytest
