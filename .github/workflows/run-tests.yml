@@ -4,6 +4,14 @@ name: Run Unit Tests
 # When to run: every time code is pushed to the repository
 on:
   push:
+    paths:
+      - "src/**"
+      - "tests/**"
+      - "github/workflows/run-tests.yml"
+    
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   unit-test:
